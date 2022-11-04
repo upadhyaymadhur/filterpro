@@ -1,5 +1,7 @@
+noseX=0
+noseY=0
 function preload(){
-
+nose = loadImage('https://i.postimg.cc/brHyD71z/mustache-transparent-mustache-cut-out-11563114756a2b9j58yag-removebg-preview.png');
 }
 function setup(){
 canvas = createCanvas(300,300);
@@ -16,6 +18,8 @@ function modelLoaded() {
 }
 function draw(){
 image(video, 0, 0, 300, 300);
+
+image(nose, noseX-40, noseY-20, 80, 80)
 }
 function take_snapshot(){
     save('myfilter.png')
@@ -24,8 +28,10 @@ function gotPoses(results)
 {
     if(results.length > 0)
     {
+        noseX = results[0].pose.nose.x;
+        noseY = results[0].pose.nose.y
         console.log(results)
-        console.log("nose x = " + results[0].pose.nose.x);
-        console.log("nose y = " + results[0].pose.nose.y);
+        console.log("nose x = " + noseX);
+        console.log("nose y = " + noseY);
     }
 }
